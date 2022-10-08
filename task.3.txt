@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+
+//Task: 3
+//
+//Counter c(0, 100);//min,max,currentData
+//c.increment();
+//cout << getCurrent();//1
+//c.increment();
+//cout << getCurrent();//2
+//2.Rəqəmsal sayğac məhdud diapazonlu dəyişəndir.Onun tam qiyməti təyin edilmiş maksimum qiymət həddinə
+//(məsələn, k 0 - 100 diapazonunda qiymət alır) çatdığı zaman sıfırlanır.
+//Bu cür sayğacın parametri kimi rəqəmsal saatı, kilometrölçən sayğacı nümunə göstərmək olar.
+//Bu cür sayğac üçün sinfi təyin edin.Maksimal və minimal qiymətlərin verilməsini,
+//sayğacın qiymətinin 1 vahid artırılmasını, cari qiymətin qaytarılmasını təmin edin.
+
+
+
+class Counter {
+	int min;
+	int max;
+	int currentData;
+public:
+	Counter(int argMin, int argMax) {
+		min = argMin;
+		max = argMax;
+		currentData = min;
+	}
+
+	void SetMin(int argMin) {
+		min = argMin >= min ? argMin : 0;
+	}
+
+	void SetMax(int argMax) {
+		max = argMax > min ? argMax : min;
+	}
+
+	int GetMin() {
+		return min;
+	}
+
+	int GetMax() {
+		return max;
+	}
+
+	void SetCurrent(int c) {
+		currentData = c < max ? c : min;
+	}
+
+	int GetCurrent() {
+		return currentData;
+	}
+
+	void Increment() {
+		SetCurrent(currentData + 1);
+	}
+
+	void ShowCD() {
+		cout << currentData << endl;
+	}
+
+};
+
+
+void main() {
+	Counter c(0, 200);
+	int n = 0;
+	while (n < 111) {
+		c.Increment();
+		c.ShowCD();
+		n++;
+	}
+}
