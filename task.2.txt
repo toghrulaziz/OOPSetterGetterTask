@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+// Task 2:
+//Point class yazilsin
+//x, y fieldleri olsun ve her bir field uchun getter setterler yazilsin.
+//constructor parametric, default
+//Print method - u yazilsin
+
+
+class Point {
+	int x;
+	int y;
+public:
+	int GetX() {
+		return x;
+	}
+	int GetY() {
+		return y;
+	}
+
+	void SetX(int argX) {
+		x = argX;
+	}
+	void SetY(int argY) {
+		y = argY;
+	}
+
+	Point()
+	{
+		x = 0;
+		y = 0;
+	}
+
+	Point(int argX,int argY)
+	{
+		SetX(argX);
+		SetY(argY);
+	}
+
+	void Print() {
+		cout << "X: " << x << " " << "Y: " << y << endl;
+	}
+};
+
+
+void main() {
+	Point p;
+	Point p1(1,2);
+	p.Print();
+	p1.Print();
+}
