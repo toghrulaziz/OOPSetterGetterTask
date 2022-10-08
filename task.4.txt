@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+
+
+//Task: 2
+//Tələbələr qrupunu əks etdirən class təyin edin.
+//Student : name, surname, age, group_no, speciality, city
+//Print method - u yazilsin.
+
+class Students {
+	char* name = nullptr;
+	char* surname = nullptr;
+	int age = 0;
+	char* groupNo = nullptr;
+	char* speciality = nullptr;
+	char* city = nullptr;
+	
+public:
+	Students(){}
+
+	Students(const char* n, const char* s, int a, const char* g,const char* sp,const char* c)
+	{
+		SetName(n);
+		SetSurname(s);
+		SetAge(a);
+		SetGroupNo(g);
+		SetSpeciality(sp);
+		SetCity(c);
+	}
+
+	void Print() {
+		cout << "Name: " << name << endl << "Surname: " << surname << endl << "Age: " << age << endl << "Group Number: " << groupNo << endl << "Speciality: " << speciality << endl << "City: " << city << endl;
+	}
+
+
+	void SetName(const char* n) {
+		delete[] name;
+		name = new char[strlen(n) + 1];
+		strcpy_s(name, strlen(n) + 1, n);
+	}
+
+	void SetSurname(const char* s) {
+		delete[] surname;
+		surname = new char[strlen(s) + 1];
+		strcpy_s(surname, strlen(s) + 1, s);
+	}
+
+	void SetGroupNo(const char* g) {
+		delete[] groupNo;
+		groupNo = new char[strlen(g) + 1];
+		strcpy_s(groupNo, strlen(g) + 1, g);
+	}
+
+	void SetSpeciality(const char* sp) {
+		delete[] speciality;
+		speciality = new char[strlen(sp) + 1];
+		strcpy_s(speciality, strlen(sp) + 1, sp);
+	}
+
+	void SetCity(const char* c) {
+		delete[] city;
+		city = new char[strlen(c) + 1];
+		strcpy_s(city, strlen(c) + 1,c);
+	}
+
+	void SetAge(int a) {
+		age = 0 < a && a < 100 ? a : 18;
+	}
+
+	int GetAge() { return age; }
+
+	~Students() {
+		delete[] name;
+		delete[] surname;
+		delete[] groupNo;
+		delete[] speciality;
+		delete[] city;
+	}
+
+};
+
+
+void main() {
+	Students s;
+	s.SetName("Toghrul");
+	s.SetSurname("Azizli");
+	s.SetAge(18);
+	s.SetGroupNo("FBAS-1224");
+	s.SetSpeciality("Programming");
+	s.SetCity("Baku");
+	s.Print();
+
+}
