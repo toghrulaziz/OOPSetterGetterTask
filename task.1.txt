@@ -1,0 +1,111 @@
+#include <iostream>
+using namespace std;
+
+
+// Task 1:
+//class Fraction {
+//private:
+//	int numerator; // suret
+//	int denominator; // mexrec
+//public:
+//	void init(int num, int don);
+//	Fraction Multiply(const Fraction& other); // Kesri kesre vurub yeni kesr qaytarir
+//	Fraction Add(const Fraction& other); // Kesri kesrle toplayib yeni kesr qaytarir
+//	Fraction Minus(const Fraction& other); // Kesri kesrden chixib yeni kesr qaytarir
+//	Fraction Divide(const Fraction& other); // Kesri kesre bolub yeni kesr qaytarir
+//	void Simplify(const Fraction& other); // Kesri ixtisar edir
+//};
+
+
+
+class Fraction {
+private:
+	int numerator;
+	int denominator;
+public:
+	Fraction()
+	{
+		numerator = 1;
+		denominator = 1;
+	}
+
+	Fraction(int num,int don)
+	{
+		numerator = num;
+		if (don == 0) {
+			cout << "Error";
+		}
+		else {
+			denominator = don;
+		}
+	}
+
+	Fraction Multiply(const Fraction& other) {
+		int num = numerator * other.numerator;
+		int don = denominator * other.denominator;
+		return Fraction(num / Simplify(num,don), don / Simplify(don,num));
+	}; 
+
+	Fraction Add(const Fraction& other) {
+		int num = numerator * other.denominator + other.numerator * denominator;
+		int don = denominator * other.denominator;
+		return Fraction(num / Simplify(num, don), don / Simplify(don, num));
+	};
+
+	Fraction Minus(const Fraction& other) {
+		int num = numerator * other.denominator - other.numerator * denominator;
+		int don = denominator * other.denominator;
+		return Fraction(num / Simplify(num, don), don / Simplify(don, num));
+	};
+
+	Fraction Divide(const Fraction& other) {
+		int num = numerator * other.denominator;
+		int don = denominator * other.numerator;
+		return Fraction(num / Simplify(num, don), don / Simplify(don, num));
+	};
+
+	int Simplify(int num,int don) {
+		int qaliq;
+		while (don != 0) {
+			qaliq = num % don;
+			num = don;
+			don = qaliq;
+		}
+		return num;
+	}; 
+
+
+	void printResult()
+	{
+		if (denominator == 1) 
+			cout << numerator << endl;
+		else
+			cout << numerator << "/" << denominator << endl;
+	}
+};
+
+
+void main() {
+	Fraction f1(1, 2);
+	Fraction f2(2, 3);
+	Fraction f3;
+
+
+	f3 = f1.Multiply(f2);
+	cout << "Hasil:  ";
+	f3.printResult();
+
+
+	f3 = f1.Add(f2);
+	cout << "Cem:  ";
+	f3.printResult();
+	
+
+	f3 = f1.Minus(f2);
+	cout << "Ferq:  ";
+	f3.printResult();
+
+	f3 = f1.Divide(f2);
+	cout << "Qismet:  ";
+	f3.printResult();
+}
